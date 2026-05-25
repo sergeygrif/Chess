@@ -179,7 +179,7 @@ return 1;
 }
 int D(vector<vector<int>>& s,T*& t){
 T* h;
-for(h=t->r;h;h=h->r)if(h->p==t->p)break;
+for(h=t->r;h&&h->p!=t->p;h=h->r);
 if(h==0)return 0;
 t->e.push_back(0);
 R(s,t);
