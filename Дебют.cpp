@@ -181,7 +181,7 @@ int D(vector<vector<int>>& s,T*& t){
 T* h;
 for(h=t->r;h&&h->p!=t->p;h=h->r);
 if(h==0)return 0;
-t->e.push_back(0);
+t->e={0,0,0};
 R(s,t);
 return 1;
 }
@@ -262,9 +262,38 @@ K('l');
 N(s,t);
 return 1;
 }
-void E(int s,int b,vector<int>& e,T*& t){
-int i;
-if(t->n.empty())for(i=0;i<t->g;i++)e.push_back(s*t->e[0]);else for(i=0;i<t->n.size();i++)if(s!=b||t->n[i]->e[0]==-t->e[0])E(-s,b,e,t->n[i]);
+void F(vector<int>& e){
+int l,r,s;
+for(l=0,r=e.size()-1;l<=r;l++,r--){
+s=e[l];
+e[l]=-e[r];
+e[r]=-s;
+}
+}
+int E(int n,vector<int>& e){return e[(e.size()-1+n)/2];}
+vector<int> E(int n,T*& t){
+int i,m,b;
+vector<int> e;
+vector<vector<int>> v;
+if(t->n.empty())for(i=0;i<t->g;i++)e.push_back(t->e[0]);else{
+for(i=0;i<t->n.size();i++){
+v.push_back(E(!n,t->n[i]));
+F(v[i]);
+}
+if(n==0){
+m=INT_MIN;
+for(i=0;i<t->n.size();i++)if(E(0,v[i])>m){
+b=i;
+m=E(0,v[i]);
+}
+e=v[b];
+}
+else{
+for(i=0;i<t->n.size();i++)e.insert(e.end(),v[i].begin(),v[i].end());
+sort(e.begin(),e.end());
+}
+}
+return e;
 }
 void R(vector<vector<int>>& s,T*& t,vector<T*>& h){
 int i;
@@ -272,10 +301,8 @@ vector<int> e;
 sort(t->n.begin(),t->n.end(),[](T* a,T* b){return a->e[0]<b->e[0]||a->e[0]==b->e[0]&&a->e[2]<b->e[2]||a->e[0]==b->e[0]&&a->e[2]==b->e[2]&&a->e[1]<b->e[1];});
 t->e[0]=-t->n[0]->e[0];
 for(i=0;i<2;i++){
-E(1,1-2*i,e,t);
-sort(e.begin(),e.end());
-t->e.push_back(e[(e.size()-1+i)/2]);
-e={};
+e=E(i,t);
+t->e.push_back(E(i,e));
 }
 H(t,h);
 K('u');
@@ -293,7 +320,8 @@ for(j=0;j<h[i]->n.size();j++){
 if(j)d<<',';
 d<<F(h[i]->n[j]->m);
 }
-d<<h[i]->b<<'_';
+if(h[i]->n.empty())d<<h[i]->b;
+d<<'_';
 for(j=0;j<3;j++){
 if(j)d<<',';
 d<<h[i]->e[j];
