@@ -265,7 +265,7 @@ vector<int> E(int n,T*& t){
 int i,m,b;
 vector<int> e;
 vector<vector<int>> v;
-if(t->n.empty())e.push_back(t->e[0]);else{
+if(t->n.empty())return {t->e[0]};
 for(i=0;i<t->n.size();i++){
 v.push_back(E(!n,t->n[i]));
 F(v[i]);
@@ -276,13 +276,10 @@ for(i=0;i<t->n.size();i++)if(E(0,v[i])>m){
 b=i;
 m=E(0,v[i]);
 }
-e=v[b];
+return v[b];
 }
-else{
 for(i=0;i<t->n.size();i++)e.insert(e.end(),v[i].begin(),v[i].end());
 sort(e.begin(),e.end());
-}
-}
 return e;
 }
 void R(vector<vector<int>>& s,T*& t,vector<T*>& h){
