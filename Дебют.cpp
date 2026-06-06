@@ -6,7 +6,6 @@
 using namespace std;
 using namespace chrono;
 struct T{
-int g;
 string p,m,b,h;
 vector<int> e;
 T* r;
@@ -109,29 +108,6 @@ for(i=c.size()-7;c[i]!=' ';i--)if(c[i]!='x'&&c[i]!='+')m=c[i]+m;
 if(c[i-1]=='.')return F(m);
 return m;
 }
-int G(int h,vector<vector<int>>& s){
-int g,p,w,b,x,y;
-vector<int> d;
-d={145,77,112,111,126,110,144,93,157,141};
-g=0;
-p=1;
-for(w=0;w<7;w++){
-b=0;
-for(x=0;x<15;x++)for(y=0;y<21;y++)b+=s[s.size()-1][6223+19565*h-16*w+x+455*y]!=-1;
-if(b==0)continue;
-g+=p*(find(d.begin(),d.end(),b)-d.begin());
-p*=10;
-}
-return g;
-}
-int G(vector<vector<int>>& s){
-int g,i;
-if(G(0,s)==0)return 1;
-if(G(0,s)>=100)return 100;
-g=0;
-for(i=0;i<37;i++)g+=G(i,s);
-return g;
-}
 vector<T*>::iterator P(T*& t,vector<T*>& h){return lower_bound(h.begin(),h.end(),t,[](T* a,T* b){return a->p<b->p;});}
 int S(int x,int y){return S(x,x,y,y)[0];}
 void I(int x,int y){
@@ -171,7 +147,6 @@ int i;
 i=P(t,h)-h.begin();
 if(i==h.size()||h[i]->p!=t->p)return 0;
 t->b=h[i]->b;
-t->g=h[i]->g;
 t->e=h[i]->e;
 t->n=h[i]->n;
 R(s,t);
@@ -184,6 +159,21 @@ if(h==0)return 0;
 t->e={0,0,0};
 R(s,t);
 return 1;
+}
+int G(int h,vector<vector<int>>& s){
+int g,p,w,b,x,y;
+vector<int> d;
+d={145,77,112,111,126,110,144,93,157,141};
+g=0;
+p=1;
+for(w=0;w<7;w++){
+b=0;
+for(x=0;x<15;x++)for(y=0;y<21;y++)b+=s[s.size()-1][6223+19565*h-16*w+x+455*y]!=-1;
+if(b==0)continue;
+g+=p*(find(d.begin(),d.end(),b)-d.begin());
+p*=10;
+}
+return g;
 }
 string B(string& c){
 int i;
@@ -275,7 +265,7 @@ vector<int> E(int n,T*& t){
 int i,m,b;
 vector<int> e;
 vector<vector<int>> v;
-if(t->n.empty())for(i=0;i<t->g;i++)e.push_back(t->e[0]);else{
+if(t->n.empty())e.push_back(t->e[0]);else{
 for(i=0;i<t->n.size();i++){
 v.push_back(E(!n,t->n[i]));
 F(v[i]);
@@ -343,7 +333,6 @@ t->r=0;
 while(t->e.size()<=1){
 if(t->p.empty())t->p=P();
 if(t->r&&t->m.empty())t->m=M();
-t->g=G(s);
 if(H(s,t,h)==0&&D(s,t)==0&&L(s,t,h)==0&&M(s,t)==0&&B(s,t)==0)R(s,t,h);
 }
 O(h);
