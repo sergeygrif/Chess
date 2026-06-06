@@ -254,10 +254,10 @@ return 1;
 }
 void F(vector<int>& e){
 int l,r,s;
-for(l=0,r=e.size()-1;l<=r;l++,r--){
-s=e[l];
+for(l=0,r=e.size()-1;r>=l;l++,r--){
+s=-e[l];
 e[l]=-e[r];
-e[r]=-s;
+e[r]=s;
 }
 }
 int E(int n,vector<int>& e){return e[(e.size()-1+n)/2];}
