@@ -112,8 +112,7 @@ vector<T*>::iterator P(T*& t,vector<T*>& h){return lower_bound(h.begin(),h.end()
 int S(int x,int y){return S(x,x,y,y)[0];}
 void I(int x,int y){
 INPUT c;
-c={0,0,0,0,6};
-SetCursorPos(x,y);
+c={0,65536*(0.5+x)/GetSystemMetrics(0),65536*(0.5+y)/GetSystemMetrics(1),0,32775};
 SendInput(1,&c,40);
 }
 vector<int> N(vector<vector<int>>& s){
@@ -210,8 +209,7 @@ void H(T*& t,vector<T*>& h){h.insert(P(t,h),t);}
 int L(vector<vector<int>>& s,T*& t,vector<T*>& h){
 if(G(0,s)>=100)return 0;
 A(t);
-t->e.push_back(t->e[0]);
-t->e.push_back(t->e[0]);
+t->e={t->e[0],t->e[0],t->e[0]};
 H(t,h);
 K('u');
 R(s,t);
