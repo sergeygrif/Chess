@@ -123,11 +123,13 @@ t=steady_clock::now();
 while(1){
 n=S();
 if(n!=s[s.size()-1]&&n[0]==-16746281&&n[455]==-1)return n;
-if((steady_clock::now()-t).count()<10000000000||S(3404,2359)==-1)continue;
+if((steady_clock::now()-t).count()<5000000000||S(3404,2359)==-1)continue;
 c=S(2008,503);
 I(894,201);
-Sleep(10000);
-if(S(2008,503)>c)return S();
+Sleep(5000);
+if(S(2008,503)<=c)continue;
+Sleep(5000);
+return S();
 }
 }
 void R(vector<vector<int>>& s,T*& t){
