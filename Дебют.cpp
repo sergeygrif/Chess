@@ -120,16 +120,19 @@ int c;
 time_point<steady_clock> t;
 vector<int> n;
 t=steady_clock::now();
+c=S(2008,503);
 while(1){
 n=S();
 if(n!=s[s.size()-1]&&n[0]==-16746281&&n[455]==-1)return n;
-if((steady_clock::now()-t).count()<5000000000||S(3404,2359)==-1)continue;
+if(c==-7368818&&S(2008,503)==-5513984){
+Sleep(10000);
+return S();
+}
+if((steady_clock::now()-t).count()>=10000000000&&S(3406,2353)==-14935012){
+t=steady_clock::now();
 c=S(2008,503);
 I(894,201);
-Sleep(5000);
-if(S(2008,503)<=c)continue;
-Sleep(5000);
-return S();
+}
 }
 }
 void R(vector<vector<int>>& s,T*& t){
