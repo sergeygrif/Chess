@@ -116,23 +116,25 @@ c={0,65536*(0.5+x)/GetSystemMetrics(0),65536*(0.5+y)/GetSystemMetrics(1),0,32775
 SendInput(1,&c,40);
 }
 vector<int> N(vector<vector<int>>& s){
-int c;
-time_point<steady_clock> t;
+int c1,c2;
+time_point<steady_clock> t1,t2;
 vector<int> n;
-t=steady_clock::now();
-c=S(2008,503);
+t1=steady_clock::now();
+c1=S(2008,503);
 while(1){
+t2=steady_clock::now();
+c2=S(2008,503);
 n=S();
 if(n!=s[s.size()-1]&&n[0]==-16746281&&n[455]==-1)return n;
-if(c==-7368818&&S(2008,503)==-5513984){
+if(c1==-7368818&&c2==-5513984){
 Sleep(10000);
 return S();
 }
-if((steady_clock::now()-t).count()>=10000000000&&S(3406,2353)==-14935012){
-t=steady_clock::now();
-c=S(2008,503);
+if((t2-t1).count()>=10000000000&&S(3406,2353)==-14935012){
 I(894,201);
+t1=t2;
 }
+c1=c2;
 }
 }
 void R(vector<vector<int>>& s,T*& t){
