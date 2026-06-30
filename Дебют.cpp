@@ -266,8 +266,16 @@ e[r]=s;
 }
 }
 int E(int n,vector<int>& e){return e[(e.size()-1+n)/2];}
+int G(int e,int n,int s){
+int l;
+double a,d;
+a=0.5*(e-1);
+d=abs(n-a);
+l=e%2+2*ceil(d)-(n<a);
+return s/e+(s%e>=l);
+}
 vector<int> E(int n,T*& t){
-int i,m,b;
+int i,s,m,b,j;
 vector<int> e;
 vector<vector<int>> v;
 if(t->n.empty())return {t->e[0]};
@@ -276,12 +284,17 @@ v.push_back(E(!n,t->n[i]));
 F(v[i]);
 }
 if(n==0){
+s=0;
 m=INT_MIN;
-for(i=0;i<t->n.size();i++)if(E(0,v[i])>m){
+for(i=0;i<t->n.size();i++){
+s+=v[i].size();
+if(E(0,v[i])>m){
 b=i;
 m=E(0,v[i]);
 }
-return v[b];
+}
+for(i=0;i<v[b].size();i++)for(j=0;j<G(v[b].size(),i,s);j++)e.push_back(v[b][i]);
+return e;
 }
 for(i=0;i<t->n.size();i++)e.insert(e.end(),v[i].begin(),v[i].end());
 sort(e.begin(),e.end());
