@@ -267,12 +267,10 @@ e[r]=s;
 }
 int E(int n,vector<int>& e){return e[(e.size()-1+n)/2];}
 int G(int e,int n,int s){
-int l;
 double a,d;
 a=0.5*(e-1);
 d=abs(n-a);
-l=e%2+2*ceil(d)-(n<a);
-return s/e+(s%e>=l);
+return s/e+(s%e>=e%2+2*ceil(d)-(n<a));
 }
 vector<int> E(int n,T*& t){
 int i,s,m,b,j;
