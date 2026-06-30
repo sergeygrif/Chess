@@ -270,7 +270,7 @@ int G(int e,int n,int s){
 double a,d;
 a=0.5*(e-1);
 d=abs(n-a);
-return s/e+(s%e>=e%2+2*ceil(d)-(n<a));
+return s/e+(s%e>=e%2+2*int(0.5+d)-(n<a));
 }
 vector<int> E(int n,T*& t){
 int i,s,m,b,j;
