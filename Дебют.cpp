@@ -6,10 +6,15 @@
 using namespace std;
 using namespace chrono;
 struct T{
+int g;
 string p,m,b,h;
 vector<int> e;
 T* r;
 vector<T*> n;
+};
+struct V{
+int e;
+long long n;
 };
 void K(char b1,char b2){
 vector<INPUT> c;
@@ -108,6 +113,29 @@ for(i=c.size()-7;c[i]!=' ';i--)if(c[i]!='x'&&c[i]!='+')m=c[i]+m;
 if(c[i-1]=='.')return F(m);
 return m;
 }
+int G(int h,vector<vector<int>>& s){
+int g,p,w,b,x,y;
+vector<int> d;
+d={145,77,112,111,126,110,144,93,157,141};
+g=0;
+p=1;
+for(w=0;w<7;w++){
+b=0;
+for(x=0;x<15;x++)for(y=0;y<21;y++)b+=s[s.size()-1][6223+19565*h-16*w+x+455*y]!=-1;
+if(b==0)continue;
+g+=p*(find(d.begin(),d.end(),b)-d.begin());
+p*=10;
+}
+return g;
+}
+int G(vector<vector<int>>& s){
+int g,i;
+if(G(0,s)==0)return 1;
+if(G(0,s)>=100)return 100;
+g=0;
+for(i=0;i<37;i++)g+=G(i,s);
+return g;
+}
 vector<T*>::iterator P(T*& t,vector<T*>& h){return lower_bound(h.begin(),h.end(),t,[](T* a,T* b){return a->p<b->p;});}
 int S(int x,int y){return S(x,x,y,y)[0];}
 void I(int x,int y){
@@ -153,6 +181,7 @@ int i;
 i=P(t,h)-h.begin();
 if(i==h.size()||h[i]->p!=t->p)return 0;
 t->b=h[i]->b;
+t->g=h[i]->g;
 t->e=h[i]->e;
 t->n=h[i]->n;
 R(s,t);
@@ -165,21 +194,6 @@ if(h==0)return 0;
 t->e={0,0,0};
 R(s,t);
 return 1;
-}
-int G(int h,vector<vector<int>>& s){
-int g,p,w,b,x,y;
-vector<int> d;
-d={145,77,112,111,126,110,144,93,157,141};
-g=0;
-p=1;
-for(w=0;w<7;w++){
-b=0;
-for(x=0;x<15;x++)for(y=0;y<21;y++)b+=s[s.size()-1][6223+19565*h-16*w+x+455*y]!=-1;
-if(b==0)continue;
-g+=p*(find(d.begin(),d.end(),b)-d.begin());
-p*=10;
-}
-return g;
 }
 string B(string& c){
 int i;
@@ -257,55 +271,86 @@ K('l');
 N(s,t);
 return 1;
 }
-void F(vector<int>& e){
-int l,r,s;
+void F(vector<V>& e){
+int l,r;
+V s;
 for(l=0,r=e.size()-1;r>=l;l++,r--){
-s=-e[l];
-e[l]=-e[r];
+s={-e[l].e,e[l].n};
+e[l]={-e[r].e,e[r].n};
 e[r]=s;
 }
 }
-int E(int n,vector<int>& e){return e[(e.size()-1+n)/2];}
-int G(int e,int n,int s){
-double a,d;
-a=0.5*(e-1);
-d=abs(n-a);
-return s/e+(s%e>=e%2+2*int(0.5+d)-(n<a));
+vector<V> E(vector<vector<V>>& v){
+int i,j;
+vector<V> e;
+for(i=0;i<v.size();i++)for(j=0;j<v[i].size();j++)e.push_back(v[i][j]);
+sort(e.begin(),e.end(),[](const V& a,const V& b){return a.e<b.e;});
+for(i=1;i<e.size();)if(e[i].e>e[i-1].e)i++;else{
+e[i-1].n+=e[i].n;
+e.erase(e.begin()+i);
 }
-vector<int> E(int n,T*& t){
-int i,s,m,b,j;
-vector<int> e;
-vector<vector<int>> v;
-if(t->n.empty())return {t->e[0]};
+return e;
+}
+long long G(vector<V>& e){
+int i;
+long long g;
+g=0;
+for(i=0;i<e.size();i++)g+=e[i].n;
+return g;
+}
+int E(int b,long long g,vector<V>& e){
+int i;
+long long l;
+l=0;
+for(i=0;l<=(g-b)/2;i++)l+=e[i].n;
+return e[i-1].e;
+}
+vector<V> E(long long s,long long g,vector<V>& b){
+int i;
+long long n1,l1,l2,n2;
+vector<V> e;
+n1=s%g;
+if(n1==0)l1=g;else l1=(g-1)/2-(n1-1)/2-((n1-1)%2&&g%2);
+l2=0;
+for(i=0;i<b.size();i++){
+n2=b[i].n;
+e.push_back({b[i].e,s/g*n2+max(min(l1+n1-1,l2+n2-1)-max(l1,l2)+1,0LL)});
+l2+=n2;
+}
+return e;
+}
+vector<V> E(int b,T*& t){
+int i,eb,e,ib;
+long long s,g,gb;
+vector<vector<V>> v;
+if(t->n.empty())return {{t->e[0],t->g}};
 for(i=0;i<t->n.size();i++){
-v.push_back(E(!n,t->n[i]));
+v.push_back(E(!b,t->n[i]));
 F(v[i]);
 }
-if(n==0){
+if(b==0)return E(v);
 s=0;
-m=INT_MIN;
-for(i=0;i<t->n.size();i++){
-s+=v[i].size();
-if(E(0,v[i])>m){
-b=i;
-m=E(0,v[i]);
+eb=INT_MIN;
+for(i=0;i<v.size();i++){
+g=G(v[i]);
+e=E(1,g,v[i]);
+s+=g;
+if(e>eb){
+ib=i;
+gb=g;
+eb=e;
 }
 }
-for(i=0;i<v[b].size();i++)for(j=0;j<G(v[b].size(),i,s);j++)e.push_back(v[b][i]);
-return e;
-}
-for(i=0;i<t->n.size();i++)e.insert(e.end(),v[i].begin(),v[i].end());
-sort(e.begin(),e.end());
-return e;
+return E(s,gb,v[ib]);
 }
 void R(vector<vector<int>>& s,T*& t,vector<T*>& h){
 int i;
-vector<int> e;
+vector<V> e;
 sort(t->n.begin(),t->n.end(),[](T* a,T* b){return a->e[0]<b->e[0]||a->e[0]==b->e[0]&&a->e[2]<b->e[2]||a->e[0]==b->e[0]&&a->e[2]==b->e[2]&&a->e[1]<b->e[1];});
 t->e[0]=-t->n[0]->e[0];
 for(i=0;i<2;i++){
-e=E(i,t);
-t->e.push_back(E(i,e));
+e=E(!i,t);
+t->e.push_back(E(!i,G(e),e));
 }
 H(t,h);
 K('u');
@@ -346,6 +391,7 @@ t->r=0;
 while(t->e.size()<=1){
 if(t->p.empty())t->p=P();
 if(t->r&&t->m.empty())t->m=M();
+t->g=G(s);
 if(H(s,t,h)==0&&D(s,t)==0&&L(s,t,h)==0&&M(s,t)==0&&B(s,t)==0)R(s,t,h);
 }
 O(h);
