@@ -1,6 +1,6 @@
 #include<chrono>
 #include<vector>
-#include<algorithm>
+#include<algorith
 #include<iostream>
 #include<windows.h>
 using namespace std;
