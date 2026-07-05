@@ -145,18 +145,18 @@ SendInput(1,&c,40);
 }
 vector<int> N(vector<vector<int>>& s){
 int c1,c2;
-time_point<steady_clock> t1,t2;
+time_point<steady_clock> t,t1,t2;
 vector<int> n;
+t1=t=steady_clock::now();
 c1=S(2008,503);
-t1=steady_clock::now();
 while(1){
-n=S();
-c2=S(2008,503);
 t2=steady_clock::now();
-if(n!=s[s.size()-1]&&n[0]==-16746281&&n[455]==-1)return n;
-if((t2-t1).count()>=150000000&&c1==-7368818&&c2==-5513984){
+c2=S(2008,503);
+n=S();
+if((t2-t).count()<10000000000&&n!=s[s.size()-1]&&n[0]==-16746281&&n[455]==-1)return n;
+if(c1==-7368818&&c2==-5513984){
 Sleep(10000);
-return S();
+if(S(2008,503)==-5513984)return S();
 }
 if((t2-t1).count()>=10000000000&&S(3406,2353)==-14935012){
 I(894,201);
