@@ -1,7 +1,7 @@
 #include<chrono>
 #include<vector>
 #include<algorithm>
-#include<iostream>k
+#include<iostream>
 #include<windows.h>
 using namespace std;
 using namespace chrono;
