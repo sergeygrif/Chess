@@ -113,21 +113,22 @@ for(i=c.size()-7;c[i]!=' ';i--)if(c[i]!='x'&&c[i]!='+')m=c[i]+m;
 if(c[i-1]=='.')return F(m);
 return m;
 }
-int G(int h,vector<vector<int>>& s){
-int g,p,w,b,x,y;
+int G(int h,vector<int>& s){
+int g,p,w,t,x,y;
 vector<int> d;
 d={145,77,112,111,126,110,144,93,157,141};
 g=0;
 p=1;
 for(w=0;w<7;w++){
-b=0;
-for(x=0;x<15;x++)for(y=0;y<21;y++)b+=s[s.size()-1][6223+19565*h-16*w+x+455*y]!=-1;
-if(b==0)continue;
-g+=p*(find(d.begin(),d.end(),b)-d.begin());
+t=0;
+for(x=0;x<15;x++)for(y=0;y<21;y++)t+=s[6223+19565*h-16*w+x+455*y]!=s[455+19565*h];
+if(t==0)continue;
+g+=p*(find(d.begin(),d.end(),t)-d.begin());
 p*=10;
 }
 return g;
 }
+int G(int h,vector<vector<int>>& s){return G(h,s[s.size()-1]);}
 int G(vector<vector<int>>& s){
 int g,i;
 if(G(0,s)==0)return 1;
@@ -144,25 +145,26 @@ c={0,65536*(0.5+x)/GetSystemMetrics(0),65536*(0.5+y)/GetSystemMetrics(1),0,32775
 SendInput(1,&c,40);
 }
 vector<int> N(vector<vector<int>>& s){
-int cp,c;
-time_point<steady_clock> ts,tc,ta,tb,t;
+time_point<steady_clock> ts,tb,t;
 vector<int> n;
-tb=ta=tc=ts=steady_clock::now();
-cp=S(2008,503);
+tb=ts=steady_clock::now();
 while(1){
 t=steady_clock::now();
-c=S(2008,503);
 n=S();
-if(cp==-7368818&&c==-5513984)tc=t;
-if((t-tc).count()>=60000000000)ta=t;
-if((t-tb).count()>=10000000000&&S(3406,2353)==-14935012)tb=t;
-cp=c;
 if(tb==ts&&n!=s[s.size()-1]&&n[0]==-16746281&&n[455]==-1)return n;
-if(tc==t&&(ta==ts||(t-ta).count()>=10800000000000)){
-Sleep(10000);
-if(S(2008,503)==-5513984)return S();
+if((t-tb).count()<10000000000||S(3415,2359)==-1)continue;
+tb=t;
+K('f');
+I(894,201);
+while(1){
+t=steady_clock::now();
+n=S();
+if(G(19,n)||(t-tb).count()>=10000000000)break;
 }
-if(tb==t)I(894,201);
+if((t-tb).count()<400000000||(t-tb).count()>=10000000000)continue;
+K('l');
+Sleep(10000);
+return S();
 }
 }
 void R(vector<vector<int>>& s,T*& t){
