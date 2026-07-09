@@ -1,5 +1,5 @@
 #include<chrono>
-#include<vector>k
+#include<vector>
 #include<algorithm>
 #include<iostream>
 #include<windows.h>
