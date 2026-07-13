@@ -16,10 +16,10 @@ struct V{
 int e;
 long long n;
 };
-void K(char b1,char b2){
-vector<INPUT> c;
-c={{1,b1},{1,toupper(b2)},{1,toupper(b2),2},{1,b1,2}};
-SendInput(4,c.data(),40);
+void I(int x,int y){
+INPUT c;
+c={0,65536*(0.5+x)/GetSystemMetrics(0),65536*(0.5+y)/GetSystemMetrics(1),0,32775};
+SendInput(1,&c,40);
 }
 void K(char b){
 vector<INPUT> c;
@@ -139,11 +139,6 @@ return g;
 }
 vector<T*>::iterator P(T*& t,vector<T*>& h){return lower_bound(h.begin(),h.end(),t,[](T* a,T* b){return a->p<b->p;});}
 int S(int x,int y){return S(x,x,y,y)[0];}
-void I(int x,int y){
-INPUT c;
-c={0,65536*(0.5+x)/GetSystemMetrics(0),65536*(0.5+y)/GetSystemMetrics(1),0,32775};
-SendInput(1,&c,40);
-}
 vector<int> N(vector<vector<int>>& s){
 time_point<steady_clock> ts,tb,t;
 vector<int> n;
@@ -385,7 +380,12 @@ vector<vector<int>> s;
 T* t;
 vector<T*> h;
 ShowWindow(GetConsoleWindow(),0);
-K(18,27);
+system("powershell -c \"(gwmi AsusAtkWmi_WMNB -n root/wmi).DEVS(1114137,3)\"");
+Sleep(180000);
+system("start \"\" \"C:\\Program Files\\ChessBase\\ChessProgram18\\ChessProgram18.exe\"");
+Sleep(1000);
+I(360,536);
+Sleep(10000);
 Q();
 s.push_back(S());
 t=new T;
@@ -397,4 +397,6 @@ t->g=G(s);
 if(H(s,t,h)==0&&D(s,t)==0&&L(s,t,h)==0&&M(s,t)==0&&B(s,t)==0)R(s,t,h);
 }
 O(h);
+system("powershell -c \"(gwmi AsusAtkWmi_WMNB -n root/wmi).DEVS(1114137,0)\"");
+system("pnputil /enable-device \"ACPI\\ATK3001\\4&D3DC076&0\"");
 }
