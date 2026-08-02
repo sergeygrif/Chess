@@ -1,7 +1,7 @@
 #include<chrono>
 #include<vector>
 #include<algorithm>
-#include<iostream>k
+#include<iostream>
 #include<windows.h>
 using namespace std;
 using namespace chrono;
@@ -44,7 +44,7 @@ cout<<"4. Если есть альтернативный ход -> пункт 1,
 cout<<"-----------------------------------------------------------------------------------------------"<<endl;
 cout<<"Дебют:"<<endl;
 cout<<"1. Ходы от 100 партий и лучший по движку"<<endl;
-cout<<"2. Stockfish 16.07.2026"<<endl;
+cout<<"2. Stockfish "<<endl;
 cout<<"3. Глубина 40"<<endl;
 cout<<"4. Оценка=(Stockfish - Stockfish,Adaptive - 2300,2300 - Adaptive)"<<endl;
 }
