@@ -158,8 +158,8 @@ if(G(19,n)||(t-tb).count()>=10000000000)break;
 }
 if((t-tb).count()<400000000||(t-tb).count()>=10000000000)continue;
 K('l');
-Sleep(10000);
-return S();
+Sleep(60000);
+if(S(2008,503)==-5513984)return S();
 }
 }
 void R(vector<vector<int>>& s,T*& t){
