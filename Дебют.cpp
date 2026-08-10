@@ -383,7 +383,7 @@ ShowWindow(GetConsoleWindow(),0);
 system("powershell -c \"(gwmi AsusAtkWmi_WMNB -n root/wmi).DEVS(1114137,3)\"");
 Sleep(180000);
 system("start \"\" \"C:\\Program Files\\ChessBase\\ChessProgram18\\ChessProgram18.exe\"");
-Sleep(1000);
+Sleep(10000);
 I(360,536);
 Sleep(10000);
 Q();
