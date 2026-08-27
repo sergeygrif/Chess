@@ -139,16 +139,16 @@ return g;
 }
 vector<T*>::iterator P(T*& t,vector<T*>& h){return lower_bound(h.begin(),h.end(),t,[](T* a,T* b){return a->p<b->p;});}
 int S(int x,int y){return S(x,x,y,y)[0];}
-vector<int> N(){
+vector<int> N(vector<vector<int>>& s){
 time_point<steady_clock> ts,tb,t;
-vector<int> s,n;
+vector<int> f,n;
 ts=steady_clock::now();
-s=S();
+f=S();
 tb=ts;
 while(1){
 t=steady_clock::now();
 n=S();
-if(tb==ts&&n!=s&&n[0]==-16746281&&n[455]==-1)return n;
+if(tb==ts&&n!=s[s.size()-1]&&n!=f&&n[0]==-16746281&&n[455]==-1)return n;
 if((t-tb).count()<10000000000||S(3415,2359)==-1)continue;
 tb=t;
 K('f');
@@ -168,7 +168,7 @@ void R(vector<vector<int>>& s,T*& t){
 vector<int> n;
 K('r');
 K('c');
-n=N();
+n=N(s);
 s.pop_back();
 t=t->r;
 if(s[s.size()-1]==n)return;
@@ -236,7 +236,7 @@ R(s,t);
 return 1;
 }
 void N(vector<vector<int>>& s,T*& t){
-s.push_back(N());
+s.push_back(N(s));
 t->n.push_back(new T);
 t->n[t->n.size()-1]->r=t;
 t=t->n[t->n.size()-1];
