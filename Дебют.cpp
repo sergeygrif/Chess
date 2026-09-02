@@ -138,18 +138,20 @@ for(i=0;i<37;i++)g+=G(i,s);
 return g;
 }
 vector<T*>::iterator P(T*& t,vector<T*>& h){return lower_bound(h.begin(),h.end(),t,[](T* a,T* b){return a->p<b->p;});}
-int S(int x,int y){return S(x,x,y,y)[0];}
 int N(vector<int>& s){
 int i;
 for(i=0;i<s.size();i++)if(s[i]!=-1)return 0;
 return 1;
 }
+int S(int x,int y){return S(x,x,y,y)[0];}
 vector<int> N(){
 time_point<steady_clock> ts,tb,t;
 vector<int> s,n;
-ts=steady_clock::now();
+tb=ts=steady_clock::now();
+while(1){
 s=S();
-tb=ts;
+if(s[0]==-16746281||N(s))break;
+}
 while(1){
 t=steady_clock::now();
 n=S();
