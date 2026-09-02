@@ -147,12 +147,9 @@ return 1;
 vector<int> N(){
 time_point<steady_clock> ts,tb,t;
 vector<int> s,n;
-tb=ts=steady_clock::now();
+ts=steady_clock::now();
 s=S();
-if(s[0]==-1){
-Sleep(100);
-s=S();
-}
+tb=ts;
 while(1){
 t=steady_clock::now();
 n=S();
@@ -161,12 +158,9 @@ if((t-tb).count()<10000000000||S(3415,2359)==-1)continue;
 tb=t;
 K('f');
 I(894,201);
-while(1){
-t=steady_clock::now();
+Sleep(10000);
 n=S();
-if(G(19,n)||(t-tb).count()>=10000000000)break;
-}
-if((t-tb).count()<100000000||(t-tb).count()>=10000000000)continue;
+if(G(19,n)==0)continue;
 K('l');
 Sleep(10000);
 while(1){
