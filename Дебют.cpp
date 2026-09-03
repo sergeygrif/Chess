@@ -147,11 +147,12 @@ int S(int x,int y){return S(x,x,y,y)[0];}
 vector<int> N(){
 time_point<steady_clock> ts,tb,t;
 vector<int> s,n;
-tb=ts=steady_clock::now();
 while(1){
+ts=steady_clock::now();
 s=S();
 if(s[0]==-16746281||N(s))break;
 }
+tb=ts;
 while(1){
 t=steady_clock::now();
 n=S();
