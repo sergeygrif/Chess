@@ -153,7 +153,7 @@ p=S();
 if(p[0]==-16746281||N(p))break;
 }
 if(p[0]!=-16746281)p=s[s.size()-1];
-if((cs-c).count()<600000000000)cb=cs;else cb=cs+seconds(1);
+if((cs-c).count()<1200000000000)cb=cs;else cb=cs+seconds(1);
 while(1){
 c=steady_clock::now();
 n=S();
