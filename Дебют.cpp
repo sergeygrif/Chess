@@ -144,23 +144,24 @@ for(i=0;i<s.size();i++)if(s[i]!=-1)return 0;
 return 1;
 }
 int S(int x,int y){return S(x,x,y,y)[0];}
-void N(time_point<steady_clock>& c,vector<int>& n,vector<vector<int>>& s){
-time_point<steady_clock> cs,cb;
-vector<int> p;
+vector<int> N(int& d,vector<vector<int>>& s){
+time_point<steady_clock> ts,tb,t;
+vector<int> p,n;
 while(1){
-cs=steady_clock::now();
+ts=steady_clock::now();
 p=S();
 if(p[0]==-16746281||N(p))break;
 }
 if(p[0]!=-16746281)p=s[s.size()-1];
-if((cs-c).count()<600000000000)cb=cs;else cb=cs+seconds(1);
+tb=ts+seconds(d);
 while(1){
-c=steady_clock::now();
+t=steady_clock::now();
 n=S();
-if(cb==cs&&n!=p&&n[0]==-16746281)return;
-if((c-cb).count()<10000000000||S(3415,2359)==-1)continue;
-cb=c;
+if(tb==ts&&n!=p&&n[0]==-16746281)return n;
+if((t-tb).count()<10000000000||S(3415,2359)==-1)continue;
+tb=t;
 K('f');
+if(S(2008,503)==-5513984)I(894,201);
 I(894,201);
 Sleep(10000);
 n=S();
@@ -168,27 +169,27 @@ if(G(19,n)==0)continue;
 K('l');
 Sleep(10000);
 while(1){
-c=steady_clock::now();
+t=steady_clock::now();
 n=S(1946,2400,503,2202);
 if(n[62]!=-5513984)break;
 n.erase(n.begin(),n.begin()+50050);
-if(n[0]==-16746281)return;
-if((c-cb).count()>=60000000000)if(N(n))return;else break;
+if(n[0]==-16746281)return n;
+if((t-tb).count()>=60000000000)if(N(n))return n;else break;
 }
 }
 }
-void R(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t){
+void R(int& d,vector<vector<int>>& s,T*& t){
 vector<int> n;
 K('r');
 K('c');
-N(c,n,s);
+n=N(d,s);
 s.pop_back();
 t=t->r;
 if(s[s.size()-1]==n)return;
 s[s.size()-1]=n;
 t->n={};
 }
-int H(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t,vector<T*>& h){
+int H(int& d,vector<vector<int>>& s,T*& t,vector<T*>& h){
 int i;
 i=P(t,h)-h.begin();
 if(i==h.size()||h[i]->p!=t->p)return 0;
@@ -196,15 +197,15 @@ t->b=h[i]->b;
 t->g=h[i]->g;
 t->e=h[i]->e;
 t->n=h[i]->n;
-R(c,s,t);
+R(d,s,t);
 return 1;
 }
-int D(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t){
+int D(int& d,vector<vector<int>>& s,T*& t){
 T* h;
 for(h=t->r;h&&h->p!=t->p;h=h->r);
 if(h==0)return 0;
 t->e={0,0,0};
-R(c,s,t);
+R(d,s,t);
 return 1;
 }
 string B(string& c){
@@ -228,37 +229,45 @@ string h;
 h.insert(h.begin(),find(c.begin(),c.end(),'}')+2,find(find(c.begin(),c.end(),'}'),c.end(),'{')-1);
 return "[Event \"\"]\n"+h;
 }
-void A(T*& t){
+void A(int& d,T*& t){
+time_point<steady_clock> s;
 string c;
 K('a');
-while(S(3396,587)!=-16777216);
+s=steady_clock::now();
+while(1){
+if((steady_clock::now()-s).count()>=600000000000&&d==0){
+I(894,201);
+I(894,201);
+Sleep(10000);
+if(S(1946,613)==-16746281)s+=minutes(10);else d=1;
+}
+if(S(3396,587)==-16777216)break;
+}
 c=C('m');
 t->b=B(c);
 t->e.push_back(E(c));
 t->h=H(c);
 }
 void H(T*& t,vector<T*>& h){h.insert(P(t,h),t);}
-int L(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t,vector<T*>& h){
+int L(int& d,vector<vector<int>>& s,T*& t,vector<T*>& h){
 if(G(0,s)>=100)return 0;
-A(t);
+A(d,t);
 t->e={t->e[0],t->e[0],t->e[0]};
 H(t,h);
 K('u');
-R(c,s,t);
+R(d,s,t);
 return 1;
 }
-void N(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t){
-vector<int> n;
-N(c,n,s);
-s.push_back(n);
+void N(int& d,vector<vector<int>>& s,T*& t){
+s.push_back(N(d,s));
 t->n.push_back(new T);
 t->n[t->n.size()-1]->r=t;
 t=t->n[t->n.size()-1];
 }
-int M(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t){
+int M(int& d,vector<vector<int>>& s,T*& t){
 if(G(t->n.size(),s)<100)return 0;
 I(779,254.6+17.2*t->n.size());
-N(c,s,t);
+N(d,s,t);
 return 1;
 }
 int B(T*& t){
@@ -275,13 +284,13 @@ EmptyClipboard();
 SetClipboardData(1,h);
 CloseClipboard();
 }
-int B(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t){
-if(t->b.empty())A(t);
+int B(int& d,vector<vector<int>>& s,T*& t){
+if(t->b.empty())A(d,t);
 if(B(t))return 0;
 C(t->h);
 K('h');
 K('l');
-N(c,s,t);
+N(d,s,t);
 return 1;
 }
 void F(vector<V>& e){
@@ -356,7 +365,7 @@ eb=e;
 }
 return E(s,gb,v[ib]);
 }
-void R(time_point<steady_clock>& c,vector<vector<int>>& s,T*& t,vector<T*>& h){
+void R(int& d,vector<vector<int>>& s,T*& t,vector<T*>& h){
 int i;
 vector<V> e;
 sort(t->n.begin(),t->n.end(),[](T* a,T* b){return a->e[0]<b->e[0]||a->e[0]==b->e[0]&&a->e[2]<b->e[2]||a->e[0]==b->e[0]&&a->e[2]==b->e[2]&&a->e[1]<b->e[1];});
@@ -367,7 +376,7 @@ t->e.push_back(E(!i,G(e),e));
 }
 H(t,h);
 K('u');
-if(t->r)R(c,s,t);
+if(t->r)R(d,s,t);
 }
 void O(vector<T*>& h){
 int i,j;
@@ -392,7 +401,7 @@ for(j=0;j<h[i]->n.size();j++)d<<';'<<-h[i]->n[j]->e[0]<<','<<-h[i]->n[j]->e[2]<<
 d<<"\";";
 }
 int main(){
-time_point<steady_clock> c;
+int d;
 vector<vector<int>> s;
 T* t;
 vector<T*> h;
@@ -404,7 +413,6 @@ Sleep(10000);
 I(360,536);
 Sleep(10000);
 Q();
-c=steady_clock::now();
 s.push_back(S());
 t=new T;
 t->r=0;
@@ -412,7 +420,8 @@ while(t->e.size()<=1){
 if(t->p.empty())t->p=P();
 if(t->r&&t->m.empty())t->m=M();
 t->g=G(s);
-if(H(c,s,t,h)==0&&D(c,s,t)==0&&L(c,s,t,h)==0&&M(c,s,t)==0&&B(c,s,t)==0)R(c,s,t,h);
+d=0;
+if(H(d,s,t,h)==0&&D(d,s,t)==0&&L(d,s,t,h)==0&&M(d,s,t)==0&&B(d,s,t)==0)R(d,s,t,h);
 }
 O(h);
 system("powershell -c \"(gwmi AsusAtkWmi_WMNB -n root/wmi).DEVS(1114137,0)\"");
