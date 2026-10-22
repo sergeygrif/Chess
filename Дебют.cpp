@@ -418,10 +418,10 @@ s.push_back(S());
 t=new T;
 t->r=0;
 while(t->e.size()<=1){
+d=0;
 if(t->p.empty())t->p=P();
 if(t->r&&t->m.empty())t->m=M();
 t->g=G(s);
-d=0;
 if(H(d,s,t,h)==0&&D(d,s,t)==0&&L(d,s,t,h)==0&&M(d,s,t)==0&&B(d,s,t)==0)R(d,s,t,h);
 }
 O(h);
