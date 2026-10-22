@@ -145,7 +145,7 @@ return 1;
 }
 int S(int x,int y){return S(x,x,y,y)[0];}
 vector<int> N(int& d,vector<vector<int>>& s){
-int c;
+int i;
 time_point<steady_clock> ts,tb,t;
 vector<int> p,n;
 while(1){
@@ -161,9 +161,9 @@ n=S();
 if(tb==ts&&n!=p&&n[0]==-16746281)return n;
 if((t-tb).count()<10000000000||S(3415,2359)==-1)continue;
 tb=t;
-c=S(2008,503)==-5513984;
+i=S(2008,503)==-5513984;
 K('f');
-for(;c>=0;c--)I(894,201);
+for(;i>=0;i--)I(894,201);
 Sleep(10000);
 n=S();
 if(G(19,n)==0)continue;
