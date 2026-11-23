@@ -425,6 +425,8 @@ t->g=G(s);
 if(H(d,s,t,h)==0&&D(d,s,t)==0&&L(d,s,t,h)==0&&M(d,s,t)==0&&B(d,s,t)==0)R(d,s,t,h);
 }
 O(h);
+system("taskkill /f /im ChessProgram18.exe");
 system("powershell -c \"(gwmi AsusAtkWmi_WMNB -n root/wmi).DEVS(1114137,0)\"");
 system("pnputil /enable-device \"ACPI\\ATK3001\\4&D3DC076&0\"");
+system("pnputil /enable-device \"USB\\VID_13D3&PID_3563&MI_00\\7&1d754fa2&0&0000\"");
 }
