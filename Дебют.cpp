@@ -159,7 +159,7 @@ while(1){
 t=steady_clock::now();
 n=S();
 if(tb==ts&&n!=p&&n[0]==-16746281)return n;
-if((t-tb).count()<10000000000||S(3400,2353)==-1)continue;
+if((t-tb).count()<10000000000||S(3393,2353)==-1)continue;
 tb=t;
 i=S(2008,503)==-5513984;
 K('f');
